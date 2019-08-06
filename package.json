@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/digor/E-SHOP-onServer.git"
   },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

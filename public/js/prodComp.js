@@ -23,6 +23,10 @@ let products = {
         }
     },
     methods: {
+        filter (val) {
+            let regExp = new RegExp (val, 'i')
+            this.filtered = this.products.filter (el => regExp.test (el.product_name))
+        }
     },
     template: `<div class="products">
                       <product
@@ -36,7 +40,7 @@ let products = {
         product
     },
     mounted () {
-        this.$parent.getJSON(`api/products`)
+        this.$parent.getJson(`api/products`)
             .then (data => {
                 for (let el of data) {
                     this.products.push (el)

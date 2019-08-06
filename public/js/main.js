@@ -5,51 +5,55 @@ const API = 'https://raw.githubusercontent.com/digor/GB-Online-Store/master/resp
 let app = new Vue ({
     el: '#app',
     data: {
-        //userSearch: ''
     },
     methods: {
-        getJSON (url) {
+        getJson (url) {
             return fetch (url)
                 .then (result => result.json ())
                 .catch (error => {
-                    this.$root.$refs.err.setError(error);
-                    console.log (error);
-                });
+                    this.$refs.err.setError (error)
+                })
         },
-        postJSON (url) {
+        postJson (url, data) {
             return fetch (url, {
                 method: 'POST',
                 headers: {
-                    "Content-Type": "aplication/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify (data)
             })
                 .then (result => result.json ())
                 .catch (error => {
-                    this.$root.$refs.err.setError(error);
-                    console.log (error);
-                });
+                    this.$refs.err.setError (error)
+                })
         },
-        putJSON (url) {
+        putJson (url, data) {
             return fetch (url, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
-                    "Content-Type": "aplication/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify (data)
             })
                 .then (result => result.json ())
                 .catch (error => {
-                    this.$root.$refs.err.setError(error);
-                    console.log (error);
-                });
+                    this.$refs.err.setError (error)
+                })
         },
-        filter () {
-            let regExp = new RegExp(this.userSearch, 'i');
-            this.filtered = this.products.filter(el => regExp.test (el.product_name));
+        deleteJson(url){
+            return fetch (url, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then (result => result.json ())
+                .catch (error => {
+                    this.$refs.err.setError (error)
+                })
         }
     },
     components: {
-        products, cart, error, filterEl
+        products, cart, error
     }
 })
